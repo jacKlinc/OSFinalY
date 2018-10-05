@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1538736581 source:/home/zenbook/OSFinalY/Lab5Threads/main.cpp
+	<iostream>
+	<unistd.h>
+	<pthread.h>
+

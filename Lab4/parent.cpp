@@ -10,8 +10,13 @@ int main(){
 
     } else if(processID == 0){
         for(int i = 0; i < 100; i++)
+            execl("/home/zenbook/OSFinalY/Lab4", "child.cpp", NULL);
             cout << "hello from child, Counter: %d\n", ++counter;
-            execl();
     }
-    cout << "----End------";
+    cout << "Goodbye";
 }
+/*
+The exec() family of functions replaces the current process image
+with a new process image. A process image is a copy of its state at a
+given point in time.
+execl(const char *path, const char *arg, ...);
