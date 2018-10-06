@@ -1,5 +1,7 @@
 #include "unistd.h"
 #include "stdio.h"
+#include <iostream>
+using namespace std;
 
 int main(){
     int processID = fork();
@@ -20,3 +22,4 @@ The exec() family of functions replaces the current process image
 with a new process image. A process image is a copy of its state at a
 given point in time.
 execl(const char *path, const char *arg, ...);
+*/
