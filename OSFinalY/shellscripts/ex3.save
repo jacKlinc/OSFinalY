@@ -1,0 +1,9 @@
+Type in the“are you ok”
+echo “input Y for yes N for no”
+read answer
+if test “$ANSWER” = Y
+then
+echo “Glad to hear it”
+else
+echo “go home”
+fi
