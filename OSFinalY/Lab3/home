@@ -1,2 +1,0 @@
-echo "Your home directory is :"
-grep $1 /etc/passwd | cut -f6 -d:

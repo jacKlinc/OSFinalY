@@ -4,18 +4,19 @@
 using namespace std;
 
 int main(){
-    int processID = fork();
+    pid_t processID;
+    processID = fork();
     int counter = 0;
-    if(processID == 1){
-        for(int i = 0; i < 100; i++)
-            cout << "hello from parent, Counter: %d\n", ++counter;
-
-    } else if(processID == 0){
-        for(int i = 0; i < 100; i++)
-            execl("/home/zenbook/OSFinalY/Lab4", "child.cpp", NULL);
-            cout << "hello from child, Counter: %d\n", ++counter;
+    if(processID != 0){
+        for(int i = 0; i < 10; i++)
+            cout << "hello from parent, Counter: "<< ++counter <<endl;
+    } else {
+        for(int i = 0; i < 10; i++){
+	    cout << "hello from child, Counter: " << ++counter <<endl;
+            execl("/bin/ls", "ls", "-a", NULL);
+    	}
     }
-    cout << "Goodbye";
+    cout << "Goodbye \n";
 }
 /*
 The exec() family of functions replaces the current process image
