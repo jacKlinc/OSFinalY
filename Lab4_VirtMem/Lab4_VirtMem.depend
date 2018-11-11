@@ -1,7 +1,0 @@
-# depslib dependency file v1.0
-1540200847 source:/home/zenbook/OSFinalY/Lab4_VirtMem/main.cpp
-	<iostream>
-	<sys/types.h>
-	<sys/ipc.h>
-	<sys/shm.h>
-

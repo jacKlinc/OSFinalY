@@ -8,22 +8,17 @@ using namespace std;
 
 int main()
 {
-    int shmid, *ptr;
+    int shmid, *ptr, *ptr2;
     //const void *shmaddr;
     /* create a 256 byte block of shared memory */
-    shmid = shmget(SHM_KEY, 256, 0777|IPC_CREAT); // 0777
-
-    //static_cast<int*>(ptr);
+    shmid = shmget(SHM_KEY, 256, 0777|IPC_CREAT); // 0777 is access permissions
     /* attach the process to the shared memory area */
 
     //Program 1
     ptr = (int*)shmat(shmid, 0, 0); // starting addr of 1, 0 is full R/W permission
     *ptr = 1;
     while(*ptr == 1);
-    cout << "ADDR modified: " << *ptr << endl; // prints the contents
-
-    // Program 2: attach to the same area of memory and write a zero into the first location causing the
-    //            first process to terminate
+    cout << "ADDR modified: " << *ptr << endl; // prints the contents when != 1
 
     return 0;
 }
