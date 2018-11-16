@@ -2,24 +2,40 @@
 #include <sys/types.h>
 #include <sys/ipc.h>
 #include <sys/shm.h>
+#include <stdio.h>
 #define SHM_KEY 9876 // the shared process id
 
 using namespace std;
 
 int main()
 {
+	char *shm, *s;
     int shmid, *ptr;
     //const void *shmaddr;
     shmid = shmget(SHM_KEY, 256, 0777|IPC_CREAT); // 0777 is access, creates 256B block shm 
     ptr = (int*)shmat(shmid, 0, 0); // starting addr of 1, 0 is full R/W permission
-    
-    return 0;
+  
+    /*
+     * Now read what the server put in the memory.
+     */
+    for (s = shm; *s != NULL; s++)
+        putchar(*s);
+    putchar('\n');
+
+    /*
+     * Finally, change the first character of the 
+     * segment to '*', indicating we have read 
+     * the segment.
+     */
+    *shm = '*';
+
+    exit(0);
 }
 
 /*
-second process should attach tov the same area of memory. 
+second process should attach to the same area of memory. 
 It monitors the shared memory block. 
-Each time a string is written to theblock, it reads the data and sends it 
+Each time a string is written to the block, it reads the data and sends it 
 to the screen. 
 
 The second process will need to know when the buffer has new data in it. 
