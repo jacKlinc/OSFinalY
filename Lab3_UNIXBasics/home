@@ -1,2 +1,3 @@
-echo "Your home directory is :"
-grep $1 /etc/passwd | cut -f6 -d:
+echo "Your home directory is :" 
+grep $1 /etc/passwd | cut -f6 -d: 
+# greps first column of /etc/passwd, piped with to get home directory
