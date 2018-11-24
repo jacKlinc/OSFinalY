@@ -9,9 +9,10 @@ struct msgbuf {
 	long mtype;
 	char mtext[128];
 };
-/*The first one should create a message queue, call msgrcv
-and block waiting for any message of type 1. When a message arrives it should print the text of the
-message on the screen and wait for the next message. */
+/* The first process continuously reads characters
+from the keyboard and stores them in a local array as a character string. Each time the array is filled
+with a string the process sends the array as a message to the second process via a previously created
+message queue. If the queue is full the process blocks waiting for space on the queue.  */
 
 int receive() { 									/* this function waits for a message and then processes it */
 	struct msgbuf msg;
@@ -34,4 +35,4 @@ msgflag: 	who has permission
 msgrcv(msgqid, msgbuf*msgptr, msgsize, msgtype, flag)
 return:		when completed, returns 0
 
-*/
+*/ 
