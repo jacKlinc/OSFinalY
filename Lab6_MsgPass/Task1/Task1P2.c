@@ -11,16 +11,16 @@ struct msgbuf {
 };
 
 /*The second process should get the ID of the same message queue, send a message of type 1
- with the string “hello from the sending process” to this queue
-and terminate. The first process should be run in the background.*/
+ with the string “hello from the sending process” to this queue and terminate. 
+The first process should be run in the background.*/
 
-int send() { 										/* this function sends a message */
+int main() { 										/* this function sends a message */
 	struct msgbuf msg;
-	int msgid;
-	msgid = msgget(MSG_KEY, 0); 				/* ask the kernel for the id of the message queue set up by the send function above */
-	msg.mtype = 1;
-	strcpy(msg.mtext, "hello from the sending process");
-	msgsnd(msgid, &msg, 6, 0); 					/* send the message. The kernel copies the contents of msg into the kernel area and appends it to the specified queue */
+	int msgid = msgget(MSG_KEY, 0777); 				/* ask the kernel for the id of the message queue set up by the send function above */
+	msg.mtype = 1;									// message of type 1
+	strcpy(msg.mtext, "hello\n");
+	size_t cLength = strlen(msg.mtext);
+	msgsnd(msgid, &msg, cLength+1, 0); 					/* send the message. The kernel copies the contents of msg into the kernel area and appends it to the specified queue */
 }
 
 /*
