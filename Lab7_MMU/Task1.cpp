@@ -3,7 +3,7 @@
 #include <iostream>
 using namespace std;
 
-struct pageTable {
+struct PageTable {
 	unsigned short pBit;        // Present bit
 	unsigned short rBit;        // Reference bit
     unsigned short modBit;      // Modified bit
@@ -13,7 +13,7 @@ struct pageTable {
 
 int main()
 {
-    pageTable memory[5] = {
+    struct PageTable memory[5] = {
         {1,0,0,11}
         {0,0,0,0}
         {1,1,1,10}
