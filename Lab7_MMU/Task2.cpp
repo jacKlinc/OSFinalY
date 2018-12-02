@@ -23,19 +23,18 @@ int main()
     };
 
     string message;
-    unsigned int mes;
+    //unsigned short mes;
     for(int i = 0; i < 5; i++){
         cout << "Enter valid address\n";
         cin >> message;
-        mes = stoi(message);
+        mes = int32_t(message);
         for(int j = 0; j < 2048; j++){
             if(message.length() > 32){                                   // how is addr illegal
                 cout << "ADDR illegal\n";
                 exit(0);
-            } 
-            if(mes != memory[i].memSize[j]){
+            } else if(message != memory[i].memSize[j]){
                 cout << "Page not currently in memory\n"; 
-            } else if(mes == memory[i].memSize[j]){
+            } else if(message == memory[i].memSize[j]){
                 memory[i].rBit = 1;                 // sets the reference bit
             }
         }
@@ -43,12 +42,12 @@ int main()
     return 0;
 }
 /*
-Write code that allows a user to enter a logical address and then takes the
-following action:
-If the address is illegal an illegal address message is printed and the program is
-terminated.
-If the address translates to a page that is not currently in memory then a page fault
-message should be generated, note a page is 2048 bytes long.
-If the address translates to a page currently in memory the reference bit should be set,
-the page frame that the page occupies printed and the physical address calculated and
-outputted to the screen.*/
+Adjust the above program to include a memory map table that holds the information on what
+page frames in memory are free, a zero indicates a free frame and a 1 an occupied frame.
+Assume that there are 12 page frames in memory.
+
+If a logical address translation results in a page fault then a free frame should be found in the
+memory map table, allow for at least one free frame. The memory map table should be
+changed and the page table of the process changed to reflect the new situation. The physical
+address should then be displayed.
+*/

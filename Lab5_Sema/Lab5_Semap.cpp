@@ -15,7 +15,7 @@ int main()
     union semun{                        // like struct but all members share the same location
         int val;
         struct semid_ds *buf;
-        ushort myArray[256];
+        ushort myArray[0];
     } arg;
 
     int shmid = shmget(SHM_KEY, 256, 0777|IPC_CREAT); // 0777-permission, 256B memory
