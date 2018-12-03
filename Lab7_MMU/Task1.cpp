@@ -23,7 +23,7 @@ int main()
     };
 
     string message;
-    unsigned int mes;
+    int mes;
     for(int i = 0; i < 5; i++){
         cout << "Enter valid address\n";
         cin >> message;

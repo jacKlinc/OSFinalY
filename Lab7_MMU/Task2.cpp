@@ -23,18 +23,18 @@ int main()
     };
 
     string message;
-    //unsigned short mes;
+    int mes;
     for(int i = 0; i < 5; i++){
         cout << "Enter valid address\n";
         cin >> message;
-        mes = int32_t(message);
+        mes = stoi(message);
         for(int j = 0; j < 2048; j++){
             if(message.length() > 32){                                   // how is addr illegal
                 cout << "ADDR illegal\n";
                 exit(0);
-            } else if(message != memory[i].memSize[j]){
+            } else if(mes != memory[i].memSize[j]){
                 cout << "Page not currently in memory\n"; 
-            } else if(message == memory[i].memSize[j]){
+            } else if(mes == memory[i].memSize[j]){
                 memory[i].rBit = 1;                 // sets the reference bit
             }
         }
