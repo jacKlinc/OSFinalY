@@ -40,7 +40,7 @@ int main()
     semctl(semid, 1, SETVAL, arg);
 
     while(1){
-        cout << "Writer1: \n";
+        cout << "\nWriter1: \n";
         semop(semid, &psembuf1, 1);                                 // lock file for writer
         myFile.open ("myFile.txt", ios::out | ios::app);            // ::app appends the myFile (new line)
         if(myFile.is_open()){
