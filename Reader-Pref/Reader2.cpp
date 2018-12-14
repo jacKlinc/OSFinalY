@@ -49,7 +49,7 @@ int main()
     semctl(semid, 1, SETVAL, arg);
 
     while(1){
-        cout << "Reader1:\n";
+        cout << "Reader2:\n";
         pause = getchar();                          // pause prevents error
         semop(semid, &psembuf, 1);                  // lock reader mutex
         *readerCount++;
@@ -58,7 +58,6 @@ int main()
             semop(semid, &psembuf1, 1);             // lock resource from writers if 1st reader
         }
         semop(semid, &vsembuf, 1);                  // unlock reader mutex
-        // Critical Section
         myFile.open ("myFile.txt", ios::out | ios::app); // ::app appends the myFile (new line)
         if(myFile.is_open()){        
             while(getline(myFile, op)){
