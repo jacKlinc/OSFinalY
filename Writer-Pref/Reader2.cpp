@@ -63,7 +63,7 @@ int main()
     semctl(semid, 1, SETVAL, arg);
     
     while(1){
-        cout << "\nReader1: \n";
+        cout << "\nReader2: \n";
         pause = getchar();                      // prevent errors
         semop(semid, &psembufT, 1);             // lock reader try mutex (trying to enter)
         semop(semid, &psembufR, 1);             // lock reader mutex (avoid race condition)    
@@ -76,7 +76,7 @@ int main()
         myFile.open ("myFile.txt", ios::out | ios::app); // ::app appends the myFile (new line)                                           
         if(myFile.is_open()){        
             while(getline(myFile, op)){
-                cout << op;                     // reads
+                cout << op;             // reads
             }
             myFile.close();
         }

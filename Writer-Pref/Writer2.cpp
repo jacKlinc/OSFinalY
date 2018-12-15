@@ -63,8 +63,7 @@ int main()
     semctl(semid, 1, SETVAL, arg);
 
     while(1){
-        cout << "Writer1:\n";
-        //pause = getchar();                      // prevent errors
+        cout << "Writer2:\n";
         semop(semid, &psembufW, 1);                     // lock writer to prevent race conditions
         *writerCount++;
         if(*writerCount == 1){                          // if 1st writer
