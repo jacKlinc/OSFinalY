@@ -8,10 +8,9 @@
 #include <inttypes.h>
 using namespace std;
 
-#define SHM_KEY 9876            // the shared process id
+#define SHM_KEY 9876                                // the shared process id
 #define SEMKEY  1234
 struct sembuf vsembuf, psembuf, vsembuf1, psembuf1; // struct with (p, v) being down, up
-// ************* Init semaphores once, in one myFile ***************
 
 int main()
 {
@@ -22,7 +21,7 @@ int main()
     } arg;
 
     string ip;
-    ofstream myFile;                                                // makes an ifstream object to read from myFile
+    ofstream myFile;                                                // makes an ofstream object to read from myFile
 
     int shmid = shmget(SHM_KEY, 256, 0777|IPC_CREAT);               // 0777 is the permission, IPC_CREAT creates a shared mem block
     int *readerCount = (int*)shmat(shmid, 0, 0);                            // starting addr of 1, 0 is full R/W
