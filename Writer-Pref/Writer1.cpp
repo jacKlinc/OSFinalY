@@ -24,8 +24,8 @@ int main()
     string ip;
     ofstream myFile;                                    // makes an ifstream object to read from myFile
     
-    int shmid = shmget(SHM_KEY, 256, 0777|IPC_CREAT);    // 0777 is the permission, IPC_CREAT creates a shared mem block
-    int *writerCount = (int*)shmat(shmid, 0, 0);                            // starting addr of 1, 0 is full R/W
+    int shmid = shmget(SHM_KEY, 256, 0777|IPC_CREAT);   // 0777 is the permission, IPC_CREAT creates a shared mem block
+    int *writerCount = (int*)shmat(shmid, 0, 0);        // starting addr of 1, 0 is full R/W
     int semid = semget(SEMKEY, 2, 0777|IPC_CREAT);      // Creates two semaphores
     int pause;
     *writerCount = 0;
@@ -64,7 +64,6 @@ int main()
 
     while(1){
         cout << "Writer1:\n";
-        //pause = getchar();                      // prevent errors
         semop(semid, &psembufW, 1);                     // lock writer to prevent race conditions
         *writerCount++;
         if(*writerCount == 1){                          // if 1st writer
